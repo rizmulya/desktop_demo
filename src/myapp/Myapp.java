@@ -4,6 +4,8 @@
  */
 package myapp;
 
+import myapp.view.LoginView;
+
 /**
  *
  * @author rizm
@@ -14,7 +16,8 @@ public class Myapp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        LoginView loginView = new LoginView();
+        loginView.setVisible(true);
     }
     
 }
