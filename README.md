@@ -2,6 +2,8 @@
 
 Java desktop app.
 
+keys: login, authentication, crud, search, 
+
 ## required
 
 - lib/*
