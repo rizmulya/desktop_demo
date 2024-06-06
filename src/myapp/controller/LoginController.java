@@ -6,7 +6,7 @@ package myapp.controller;
 
 import myapp.dao.UserDao;
 import myapp.model.User;
-import myapp.view.MainView;
+import myapp.view.ProductView;
 import myapp.view.LoginView;
 
 import java.sql.SQLException;
@@ -32,8 +32,8 @@ public class LoginController {
             User user = userDao.getUserByUsername(username);
             if (user != null && user.getPassword().equals(password)) {
                 // if (user.getRole().equals("ADMIN"))
-                MainView mainView = new MainView(user);
-                mainView.setVisible(true);
+                ProductView productView = new ProductView();
+                productView.setVisible(true);
                 loginView.dispose();
             } else {
                 JOptionPane.showMessageDialog(loginView, "Invalid credentials", "Login Error", JOptionPane.ERROR_MESSAGE);
