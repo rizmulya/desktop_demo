@@ -2,7 +2,7 @@
 
 Java desktop app.
 
-keys: login, authentication, crud, search, 
+keys: login, authentication, authorization, crud, search, 
 
 ## required
 

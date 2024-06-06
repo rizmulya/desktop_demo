@@ -4,6 +4,8 @@
  */
 package myapp.view;
 
+import myapp.utils.Auth;
+import myapp.utils.UserSession;
 import myapp.controller.ProductController;
 import myapp.model.Product;
 
@@ -18,6 +20,9 @@ import javax.swing.table.DefaultTableModel;
 public class ProductView extends javax.swing.JFrame {
     private ProductController productController;
     private DefaultTableModel tableModel;
+    private boolean isAuthorized = Auth.setAllowed("admin");
+    // private boolean isAuthorized = Auth.setAllowed(new String[]{"admin", "testRole"});
+    UserSession session = UserSession.getInstance(); 
 
     /**
      * Creates new form ProductView
@@ -26,6 +31,7 @@ public class ProductView extends javax.swing.JFrame {
         productController = new ProductController();
         initComponents();
         loadProducts();
+        whoami.setText(session.getUsername());
     }
 
     /**
@@ -51,6 +57,7 @@ public class ProductView extends javax.swing.JFrame {
         labelSearch = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        whoami = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Product Management");
@@ -68,6 +75,7 @@ public class ProductView extends javax.swing.JFrame {
         labelStock.setText("Stock");
 
         btnAdd.setText("Add");
+        btnAdd.setEnabled(isAuthorized);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -108,12 +116,14 @@ public class ProductView extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(table);
 
+        whoami.setText("whoami");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -135,6 +145,9 @@ public class ProductView extends javax.swing.JFrame {
                             .addComponent(labelStock, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(whoami)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -154,7 +167,7 @@ public class ProductView extends javax.swing.JFrame {
                         .addComponent(labelSearch))
                     .addComponent(labelName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -172,7 +185,9 @@ public class ProductView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(whoami))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -193,7 +208,7 @@ public class ProductView extends javax.swing.JFrame {
         txtName.setText("");
         txtPrice.setText("");
         txtStock.setText("");
-        btnAdd.setEnabled(true);
+        btnAdd.setEnabled(isAuthorized);
         btnUpdate.setEnabled(false);
         btnDelete.setEnabled(false);
         loadProducts();
@@ -283,8 +298,8 @@ public class ProductView extends javax.swing.JFrame {
                 txtPrice.setText(String.valueOf(product.getPrice()));
                 txtStock.setText(String.valueOf(product.getStock()));
                 btnAdd.setEnabled(false);
-                btnUpdate.setEnabled(true);
-                btnDelete.setEnabled(true);
+                btnUpdate.setEnabled(isAuthorized);
+                btnDelete.setEnabled(isAuthorized);
             }
         }
     }                                  
@@ -319,6 +334,9 @@ public class ProductView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                UserSession session = UserSession.getInstance(); 
+                session.setUsername("testUser");
+                session.setRole("testRole");
                 new ProductView().setVisible(true);
             }
         });
@@ -339,5 +357,6 @@ public class ProductView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtStock;
+    private javax.swing.JLabel whoami;
     // End of variables declaration//GEN-END:variables
 }

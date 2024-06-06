@@ -6,6 +6,7 @@ package myapp.controller;
 
 import myapp.dao.UserDao;
 import myapp.model.User;
+import myapp.utils.UserSession;
 import myapp.view.ProductView;
 import myapp.view.LoginView;
 
@@ -31,7 +32,9 @@ public class LoginController {
         try {
             User user = userDao.getUserByUsername(username);
             if (user != null && user.getPassword().equals(password)) {
-                // if (user.getRole().equals("ADMIN"))
+                UserSession session = UserSession.getInstance();
+                session.setUsername(user.getUsername());
+                session.setRole(user.getRole());
                 ProductView productView = new ProductView();
                 productView.setVisible(true);
                 loginView.dispose();
