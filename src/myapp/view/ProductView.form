@@ -25,37 +25,43 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnAdd" min="-2" pref="83" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnUpdate" min="-2" pref="83" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnDelete" min="-2" pref="83" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnCancel" min="-2" pref="83" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtName" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
-                          <Component id="labelPrice" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="txtPrice" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
-                          <Component id="labelStock" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="txtStock" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
-                          <Component id="labelName" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnAdd" min="-2" pref="83" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnUpdate" min="-2" pref="83" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnDelete" min="-2" pref="83" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnCancel" min="-2" pref="83" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtName" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="labelPrice" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="txtPrice" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="labelStock" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="txtStock" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                                  <Component id="labelName" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="whoami" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="whoami" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="btnPrint" min="-2" pref="83" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -104,6 +110,8 @@
                           <Component id="btnDelete" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="btnCancel" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnPrint" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="whoami" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -213,6 +221,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="whoami"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPrint">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Print"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnDelete.setEnabled(false);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
